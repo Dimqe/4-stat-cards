@@ -1,0 +1,217 @@
+
+:root {
+    --clr-primary-dark: hsl(217, 19%, 35%);
+    --clr-primary-desaturated: hsl(214, 17%, 51%);
+    --clr-neutral-grayish-blue: hsl(212, 23%, 69%);
+    --clr-neutral-light-grayish-blue: hsl(210, 46%, 95%);
+    --clr-white: hsl(0, 0%, 100%);
+
+    --ff-body: 'Manrope', sans-serif;
+    --fw-medium: 500;
+    --fw-bold: 700;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--ff-body);
+    font-size: 13px;
+    background-color: var(--clr-neutral-light-grayish-blue);
+    color: var(--clr-primary-desaturated);
+    line-height: 1.5;
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+h1 {
+    color: var(--clr-primary-dark);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+
+.card {
+    display: grid;
+    max-width: 330px;
+    background-color: var(--clr-white);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card__image-container {
+    background-image: url("/assets/images/Bitmap.png"); 
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+}
+
+.card__content {
+    padding: 2.5rem 2rem 1.5rem;
+}
+
+.card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    position: relative;
+    transition: background-color 0.2s ease-in-out;
+}
+
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-info__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.author-info__name {
+    display: block;
+    font-weight: var(--fw-bold);
+    color: var(--clr-primary-dark);
+}
+
+.share-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--clr-neutral-light-grayish-blue);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.share-btn svg path {
+    transition: fill 0.2s ease-in-out;
+}
+
+
+.share-menu {
+    display: none; 
+    align-items: center;
+    gap: 1rem;
+}
+
+.share-menu span {
+    color: var(--clr-neutral-grayish-blue);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+
+.card__footer.active {
+    background-color: var(--clr-primary-dark);
+    margin: 2rem -2rem -1.5rem;
+    padding: 1.25rem 2rem;
+    border-radius: 0 0 10px 10px;
+      flex-direction: row-reverse;
+}
+
+.card__footer.active .share-menu {
+    display: flex;
+}
+
+.card__footer.active .author-info {
+    display: none; 
+}
+
+.card__footer.active .share-btn {
+    background-color: var(--clr-primary-desaturated);
+}
+
+.card__footer.active .share-btn svg path {
+    fill: var(--clr-white);
+}
+
+
+@media (min-width: 768px) {
+    .card {
+        grid-template-columns: 285px 1fr;
+        max-width: 730px;
+        overflow: visible; 
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    .card__image-container {
+        height: 100%;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .card__content {
+        padding: 2.5rem;
+    }
+
+    .card__footer {
+        margin-top: 1.5rem;
+    }
+    
+   
+    .share-menu {
+        display: flex; 
+        position: absolute;
+        background-color: var(--clr-primary-dark);
+        border-radius: 10px;
+        padding: 1rem 2.5rem;
+        width: max-content;
+        right: -108px;
+        top: -65px;
+        left: auto;
+        bottom: auto;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        
+       
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    }
+
+    .share-menu::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: var(--clr-primary-dark);
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+    }
+    
+ 
+    .card__footer.active {
+        background-color: transparent;
+        margin: 1.5rem 0 0;
+        padding: 0;
+         flex-direction: row;
+    }
+    .card__footer.active .author-info {
+        display: flex;
+    }
+    
+   
+    .card__footer.active .share-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
